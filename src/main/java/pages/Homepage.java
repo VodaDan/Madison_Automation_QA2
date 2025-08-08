@@ -8,8 +8,4 @@ public class Homepage {
     public Homepage(Page page) {
         this.page = page;
     }
-
-    public void navigate(){
-        page.navigate("http://qa2magento.dev.evozon.com/");
-    }
 }

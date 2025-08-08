@@ -42,4 +42,7 @@ public class ProductPage {
         randomProduct.click();
     }
 
+    public void selectRandomSize(){
+
+    }
 }
