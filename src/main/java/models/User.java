@@ -1,6 +1,8 @@
 package models;
 
-public class User {
+import utils.InputGeneration;
+
+public class User extends InputGeneration {
     private String firstName;
     private String lastName;
     private String email;
@@ -11,6 +13,13 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+    }
+
+    public User () {
+        this.firstName = generateRandomName();
+        this.lastName = getLastName();
+        this.email = generateRandomEmail();
+        this.password = generateRandomName();
     }
 
     public String getFirstName() {
