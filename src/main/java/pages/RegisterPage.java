@@ -55,4 +55,61 @@ public class RegisterPage {
         submitRegistration();
     }
 
+
+    public String getFirstNameSelector() {
+        return firstNameSelector;
+    }
+
+    public void setFirstNameSelector(String firstNameSelector) {
+        this.firstNameSelector = firstNameSelector;
+    }
+
+    public String getLastNameSelector() {
+        return lastNameSelector;
+    }
+
+    public void setLastNameSelector(String lastNameSelector) {
+        this.lastNameSelector = lastNameSelector;
+    }
+
+    public String getEmailSelector() {
+        return emailSelector;
+    }
+
+    public void setEmailSelector(String emailSelector) {
+        this.emailSelector = emailSelector;
+    }
+
+    public String getPasswordSelector() {
+        return passwordSelector;
+    }
+
+    public void setPasswordSelector(String passwordSelector) {
+        this.passwordSelector = passwordSelector;
+    }
+
+    public String getRegisterButtonSelector() {
+        return registerButtonSelector;
+    }
+
+    public void setRegisterButtonSelector(String registerButtonSelector) {
+        this.registerButtonSelector = registerButtonSelector;
+    }
+
+    public String getConfirmationPasswordSelector() {
+        return confirmationPasswordSelector;
+    }
+
+    public void setConfirmationPasswordSelector(String confirmationPasswordSelector) {
+        this.confirmationPasswordSelector = confirmationPasswordSelector;
+    }
+
+    public String getMiddleNameSelector() {
+        return middleNameSelector;
+    }
+
+    public void setMiddleNameSelector(String middleNameSelector) {
+        this.middleNameSelector = middleNameSelector;
+    }
+
 }
