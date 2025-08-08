@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import pages.HeaderPage;
 import pages.Homepage;
 import pages.ProductPage;
+import utils.Navigation;
 
 
 public class BaseTest {
@@ -19,6 +20,7 @@ public class BaseTest {
     protected ProductPage productPage;
     protected Homepage homepage;
     protected HeaderPage headerPage;
+    protected Navigation navigation;
 
 
     @BeforeEach
@@ -26,9 +28,7 @@ public class BaseTest {
         this.playwright = Playwright.create();
         this.browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(300));
         this.page = browser.newPage();
-        this.productPage = new ProductPage(page);
-        this.homepage = new Homepage(page);
-        this.headerPage = new HeaderPage(page);
+        this.navigation = new Navigation(page);
     }
 
     @AfterEach
