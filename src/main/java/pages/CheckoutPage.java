@@ -1,6 +1,8 @@
 package pages;
 
 import com.microsoft.playwright.Page;
+import models.DeliveryAddress;
+import models.User;
 
 public class CheckoutPage {
 
@@ -62,6 +64,15 @@ public class CheckoutPage {
 
     public void fillRegion() {
         page.locator(regionSelector).selectOption("Alaska");
+    }
+
+    public void fillCheckoutForm(DeliveryAddress testAddress) {
+        fillFirstName(testAddress.getFirstName());
+        fillLastName(testAddress.getFirstName());
+        fillEmail(testAddress.getEmail());
+        fillCity(testAddress.getCity());
+        fillPhone(testAddress.getPhone());
+        fillZip(testAddress.getZip());
     }
 
     public void continueCheckout() {
