@@ -63,5 +63,14 @@ public class RegisterTest extends BaseTest{
         assertThat(page).hasTitle("Create New Customer Account");
     }
 
+    @Test
+    public void registerFormPasswordValidation() {
+        User mockUser = new User();
+        navigation.navigateToRegisterPage();
+        mockUser.setPassword("1"); // short password
+        registerPage.fillRegistrationForm(mockUser);
+        assertThat(page.locator(registerPage.getPasswordValidationSelector())).containsText("Please enter 6 or more characters without leading or trailing spaces.");
+    }
+
 
 }
