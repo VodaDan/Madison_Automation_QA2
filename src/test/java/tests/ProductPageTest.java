@@ -48,7 +48,6 @@ public class ProductPageTest extends BaseTest{
         navigation.navigateToLoginPage();
         loginPage.login(testUser);
         navigation.navigateToWomenDressesAndSkirts();
-        productPage.clickRandomProductFromList();
         productPage.addToWishlist();
         assertThat(page).hasURL(Pattern.compile("wishlist"));
     }

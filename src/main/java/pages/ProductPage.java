@@ -92,6 +92,7 @@ public class ProductPage {
     }
 
     public void addToWishlist(){
+        clickRandomProductFromList();
         addToWishlistButton.click();
     }
 }
