@@ -16,6 +16,8 @@ public class ProductPage {
     private final Locator productItem;
     private final Locator sizesList;
 
+    private final Locator addToWishlistButton;
+
     public ProductPage(Page page) {
         this.page = page;
         this.addToCartButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Add to Cart"));
@@ -24,6 +26,7 @@ public class ProductPage {
         this.productItem = page.locator(".products-grid .item .product-image");
         this.colorsList = page.locator("#configurable_swatch_color > li");
         this.sizesList = page.locator("#configurable_swatch_size .swatch-label");
+        this.addToWishlistButton = page.locator(".add-to-links .link-wishlist");
     }
 
     public Locator getSuccessMessage() {
@@ -79,5 +82,16 @@ public class ProductPage {
         if(randomSize.isVisible()){
             randomSize.click();
         }
+    }
+
+    public void addRandomProductToCart(){
+       clickRandomProductFromList();
+       selectColorAvailable();
+       selectSizeRandom();
+       setAddToCartButton();
+    }
+
+    public void addToWishlist(){
+        addToWishlistButton.click();
     }
 }
