@@ -12,7 +12,9 @@ public class ProductPage {
     private final Locator addToCartButton;
     private final Locator successMessage;
     private final Locator productsGrid;
+    private final Locator colorsList;
     private final Locator productItem;
+    private final Locator sizesList;
 
     public ProductPage(Page page) {
         this.page = page;
@@ -20,6 +22,8 @@ public class ProductPage {
         this.successMessage = page.locator(".success-msg");
         this.productsGrid = page.locator(".products-grid .item");
         this.productItem = page.locator(".products-grid .item .product-image");
+        this.colorsList = page.locator("#configurable_swatch_color > li");
+        this.sizesList = page.locator("#configurable_swatch_size .swatch-label");
     }
 
     public Locator getSuccessMessage() {
@@ -42,7 +46,38 @@ public class ProductPage {
         randomProduct.click();
     }
 
-    public void selectRandomSize(){
+    public void selectColorAvailable(){
+        List<Locator> colors = colorsList.all();
 
+        if (colors.isEmpty()) {
+            System.out.println("There are no colors available.");
+            return;
+        }
+
+        Random random = new Random();
+        int idx = random.nextInt(colors.size());
+        Locator randomColor = colors.get(idx);
+
+
+        if(randomColor.isVisible()){
+            randomColor.click();
+        }
+    }
+
+    public void selectSizeRandom(){
+        List<Locator> sizes = sizesList.all();
+
+        if (sizes.isEmpty()) {
+            System.out.println("There are no sizes available.");
+            return;
+        }
+
+        Random random = new Random();
+        int idx = random.nextInt(sizes.size());
+        Locator randomSize = sizes.get(idx);
+
+        if(randomSize.isVisible()){
+            randomSize.click();
+        }
     }
 }
