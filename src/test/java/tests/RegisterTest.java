@@ -57,9 +57,8 @@ public class RegisterTest extends BaseTest{
     // TODO: Use a automation testing project user all across the app
     @Test
     public void registerAlreadyRegisteredUserTest() {
-        User mockUser = new User("Jon","Jon","Jon@email.com","user1234");
         navigation.navigateToRegisterPage();
-        registerPage.fillRegistrationForm(mockUser);
+        registerPage.fillRegistrationForm(globalUser);
         assertThat(page).hasTitle("Create New Customer Account");
     }
 
