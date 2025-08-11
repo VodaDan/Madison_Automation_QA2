@@ -85,6 +85,28 @@ public class RegisterTest extends BaseTest{
         assertThat(emailValidation).isVisible(new LocatorAssertions.IsVisibleOptions().setTimeout(1500));
     }
 
+    @Test
+    public void registerShortPasswordTest() {
+        User mockUser = new User();
+        mockUser.setPassword("12345"); // min password length is 6
+        navigation.navigateToHomepage();
+        navigation.navigateToRegisterPage();
+        registerPage.fillRegistrationForm(mockUser);
+        assertThat(page.locator("div#advice-validate-password-password")).isVisible();
+    }
+
+    @Test
+    public void registerEmptyFieldsValidation() {
+        navigation.navigateToHomepage();
+        navigation.navigateToRegisterPage();
+        registerPage.submitRegistration();
+        assertThat(page.locator("div#advice-required-entry-firstname")).isVisible();
+        assertThat(page.locator("div#advice-required-entry-lastname")).isVisible();
+        assertThat(page.locator("div#advice-validate-password-password")).isVisible();
+        assertThat(page.locator("div#advice-required-entry-confirmation")).isVisible();
+    }
+
+
 
 
 }
