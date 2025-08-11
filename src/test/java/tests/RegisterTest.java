@@ -40,14 +40,21 @@ public class RegisterTest extends BaseTest{
         assertThat(page).hasTitle("Create New Customer Account");
     }
 
+    // TODO: User better asserts and validate user has been registered
+    // Added asserts that the user account details are correct
     @Test
     public void registerValidUserTest() {
         User mockUser = new User();
         navigation.navigateToRegisterPage();
         registerPage.fillRegistrationForm(mockUser);
         assertThat(page).hasTitle("My Account");
+        assertThat(page.locator("p.hello strong")).containsText(mockUser.getFirstName());
+        assertThat(page.locator("p.hello strong")).containsText(mockUser.getLastName());
+        assertThat(page.locator("div.box-content p").nth(0)).containsText(mockUser.getEmail());
     }
 
+
+    // TODO: Use a automation testing project user all across the app
     @Test
     public void registerAlreadyRegisteredUserTest() {
         User mockUser = new User("Jon","Jon","Jon@email.com","user1234");
