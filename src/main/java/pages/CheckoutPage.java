@@ -13,6 +13,7 @@ public class CheckoutPage {
     private String zipSelector;
     private String addressSelector;
     private String regionSelector;
+    private String continueButton;
 
     public CheckoutPage(Page pageSent) {
         page = pageSent;
@@ -24,6 +25,7 @@ public class CheckoutPage {
         citySelector="#billing\\:city";
         phoneSelector="#billing\\:telephone";
         regionSelector="#billing\\:region_id";
+        continueButton="div.fieldset button";
     }
 
     public void fillFirstName(String firstName) {
@@ -60,6 +62,10 @@ public class CheckoutPage {
 
     public void fillRegion() {
         page.locator(regionSelector).selectOption("Alaska");
+    }
+
+    public void continueCheckout() {
+        page.locator(continueButton).click();
     }
 
     public String getFirstNameSelector() {
@@ -124,5 +130,9 @@ public class CheckoutPage {
 
     public void setRegionSelector(String regionSelector) {
         this.regionSelector = regionSelector;
+    }
+
+    public String getContinueButton() {
+        return continueButton;
     }
 }
