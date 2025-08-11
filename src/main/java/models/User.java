@@ -17,7 +17,7 @@ public class User extends InputGeneration {
 
     public User () {
         this.firstName = generateRandomName();
-        this.lastName = getLastName();
+        this.lastName = generateRandomName();
         this.email = generateRandomEmail();
         this.password = generateRandomName();
     }
