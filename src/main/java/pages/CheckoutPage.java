@@ -16,6 +16,9 @@ public class CheckoutPage {
     private String addressSelector;
     private String regionSelector;
     private String continueButton;
+    private String checkoutOnePageCheckoutContinueButton;
+    private String checkoutShipDifferentAddressButton;
+
 
     public CheckoutPage(Page pageSent) {
         page = pageSent;
@@ -28,6 +31,8 @@ public class CheckoutPage {
         phoneSelector="#billing\\:telephone";
         regionSelector="#billing\\:region_id";
         continueButton="div.fieldset button";
+        checkoutOnePageCheckoutContinueButton = "#onepage-guest-register-button";
+        checkoutShipDifferentAddressButton = "label[for='billing\\:use_for_shipping_no']";
     }
 
     public void fillFirstName(String firstName) {
@@ -70,6 +75,7 @@ public class CheckoutPage {
         fillFirstName(testAddress.getFirstName());
         fillLastName(testAddress.getFirstName());
         fillEmail(testAddress.getEmail());
+        fillAddress(testAddress.getAddress());
         fillCity(testAddress.getCity());
         fillPhone(testAddress.getPhone());
         fillZip(testAddress.getZip());
@@ -77,6 +83,14 @@ public class CheckoutPage {
 
     public void continueCheckout() {
         page.locator(continueButton).click();
+    }
+
+    public void checkoutClickOnePageContinueButton() {
+        page.locator(checkoutOnePageCheckoutContinueButton).click();
+    }
+
+    public void checkoutShipDifferentAddress() {
+        page.locator(checkoutShipDifferentAddressButton).click();
     }
 
     public String getFirstNameSelector() {
