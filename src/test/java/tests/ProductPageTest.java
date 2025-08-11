@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import pages.HeaderPage;
 import pages.ProductPage;
 
+import java.util.regex.Pattern;
+
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 public class ProductPageTest extends BaseTest{
     private HeaderPage headerPage;
     private ProductPage productPage;
@@ -18,9 +22,13 @@ public class ProductPageTest extends BaseTest{
     }
 
     @Test
-    public void goToRandomProductPage(){
+    public void addRandomProduct(){
         navigation.navigateToHomepage();
-        headerPage.navigateToDressesAndSkirts();
+        navigation.navigateToWomenDressesAndSkirts();
         productPage.clickRandomProductFromList();
+        productPage.selectColorAvailable();
+        productPage.selectSizeRandom();
+        productPage.setAddToCartButton();
+        assertThat(page).hasURL(Pattern.compile("cart"));
     }
 }
