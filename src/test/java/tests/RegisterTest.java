@@ -30,6 +30,5 @@ public class RegisterTest extends BaseTest{
         assertThat(page.locator(registerPage.getMiddleNameSelector())).isEditable();
         assertThat(page.getByRole(AriaRole.BUTTON,new Page.GetByRoleOptions().setName("Register"))).isVisible();
         assertThat(page.getByRole(AriaRole.BUTTON,new Page.GetByRoleOptions().setName("Register"))).isEnabled();
-
     }
 }
