@@ -1,9 +1,12 @@
 package tests;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.assertions.LocatorAssertions;
 import com.microsoft.playwright.options.AriaRole;
 import models.User;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pages.RegisterPage;
 
@@ -70,6 +73,18 @@ public class RegisterTest extends BaseTest{
         registerPage.fillRegistrationForm(mockUser);
         assertThat(page.locator(registerPage.getPasswordValidationSelector())).containsText("Please enter 6 or more characters without leading or trailing spaces.");
     }
+
+    @Disabled("Fails, registration form email doesn't have asterisk and the mandatory field error is not appearing")
+    @Test
+    public void registerInvalidEmailTest() {
+        User testUser = new User("Jon","Jon","Jon","user1234");
+        navigation.navigateToHomepage();
+        navigation.navigateToRegisterPage();
+        registerPage.fillRegistrationForm(testUser);
+        Locator emailValidation = page.locator("input[type='email']+div.validation-advice");
+        assertThat(emailValidation).isVisible(new LocatorAssertions.IsVisibleOptions().setTimeout(1500));
+    }
+
 
 
 }
