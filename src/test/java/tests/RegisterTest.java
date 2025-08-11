@@ -48,5 +48,13 @@ public class RegisterTest extends BaseTest{
         assertThat(page).hasTitle("My Account");
     }
 
+    @Test
+    public void registerAlreadyRegisteredUserTest() {
+        User mockUser = new User("Jon","Jon","Jon@email.com","user1234");
+        navigation.navigateToRegisterPage();
+        registerPage.fillRegistrationForm(mockUser);
+        assertThat(page).hasTitle("Create New Customer Account");
+    }
+
 
 }
