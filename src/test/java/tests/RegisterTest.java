@@ -2,6 +2,7 @@ package tests;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import models.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.RegisterPage;
@@ -31,4 +32,21 @@ public class RegisterTest extends BaseTest{
         assertThat(page.getByRole(AriaRole.BUTTON,new Page.GetByRoleOptions().setName("Register"))).isVisible();
         assertThat(page.getByRole(AriaRole.BUTTON,new Page.GetByRoleOptions().setName("Register"))).isEnabled();
     }
+
+    @Test
+    public void registerInvalidUserTest() {
+        navigation.navigateToRegisterPage();
+        registerPage.submitRegistration();
+        assertThat(page).hasTitle("Create New Customer Account");
+    }
+
+    @Test
+    public void registerValidUserTest() {
+        User mockUser = new User();
+        navigation.navigateToRegisterPage();
+        registerPage.fillRegistrationForm(mockUser);
+        assertThat(page).hasTitle("My Account");
+    }
+
+
 }
