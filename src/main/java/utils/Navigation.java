@@ -15,6 +15,12 @@ public class Navigation {
         page.navigate("http://qa2magento.dev.evozon.com/");
     }
 
+    public void navigateToRegisterPage() {
+        this.navigateToHomepage();
+        this.page.locator("a[data-target-element='#header-account']").click();
+        this.page.locator("a[title='Register']").click();
+    }
+
     public  void navigateToWomenDressesAndSkirts(){
         page.navigate("http://qa2magento.dev.evozon.com/women/dresses-skirts.html");
     }
