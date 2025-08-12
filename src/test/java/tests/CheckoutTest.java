@@ -29,12 +29,29 @@ public class CheckoutTest extends BaseTest {
         ShoppingCart shoppingCartPage = new ShoppingCart(page);
         navigation.navigateToHomepage();
         productPage.addRandomProductToCart("2");
-        shoppingCartPage.clickProceedToCheckout();
+        shoppingCartPage.checkoutBottomButton();
         checkoutPage.checkoutClickOnePageContinueButton();
-        checkoutPage.fillCheckoutForm(address);
+        checkoutPage.fillCheckoutFormBilling(address);
         checkoutPage.fillRegion(); // default is "Alaska"
         checkoutPage.continueCheckout();
         assertThat(page.locator("li#opc-shipping")).containsClass("active");
     }
+
+    @Test
+    public void checkoutDifferentShippingAndBillingAddressTest() {
+        DeliveryAddress address = new DeliveryAddress();
+        ProductPage productPage = new ProductPage(page);
+        ShoppingCart shoppingCartPage = new ShoppingCart(page);
+        navigation.navigateToHomepage();
+        productPage.addRandomProductToCart("2");
+        shoppingCartPage.checkoutTopButton();
+        checkoutPage.checkoutClickOnePageContinueButton();
+        checkoutPage.fillCheckoutFormBilling(address);
+        page.locator("label[for='billing:use_for_shipping_no']").click();
+        checkoutPage.fillRegion(); // default is "Alaska"
+        checkoutPage.continueCheckout();
+        assertThat(page.locator("li#opc-shipping")).containsClass("active");
+    }
+
 
 }

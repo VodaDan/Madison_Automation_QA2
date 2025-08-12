@@ -22,7 +22,7 @@ public class ShoppingCart {
         page = pageSent;
         quantitySelector               = "#qty";
         removeItemButtonSelector       = "tr.first td.a-center a.btn-remove";
-        checkoutBottomButtonSelector   ="ul.checkout-types.bottom button[title='Proceed to Checkout']";
+        checkoutBottomButtonSelector   ="ul.checkout-types.bottom']";
         checkoutTopButtonSelector      ="ul.checkout-types.top";
         nameCheckout                   ="Proceed to Checkout";
         emptyCartButtonSelector        ="##empty_cart_button";

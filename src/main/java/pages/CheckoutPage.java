@@ -7,6 +7,8 @@ import models.User;
 public class CheckoutPage {
 
     private Page page;
+
+    // Billing form selectors variables
     private String firstNameSelector;
     private String lastNameSelector;
     private String emailSelector;
@@ -15,13 +17,26 @@ public class CheckoutPage {
     private String zipSelector;
     private String addressSelector;
     private String regionSelector;
-    private String continueButton;
+
+    // Shipping form selectors variables
+    private String firstNameShippingSelector;
+    private String lastNameShippingSelector;
+    private String emailShippingSelector;
+    private String phoneShippingSelector;
+    private String cityShippingSelector;
+    private String zipShippingSelector;
+    private String addressShippingSelector;
+    private String regionShippingSelector;
+
+    private String continueBillingButton;
     private String checkoutOnePageCheckoutContinueButton;
     private String checkoutShipDifferentAddressButton;
 
 
     public CheckoutPage(Page pageSent) {
         page = pageSent;
+
+        // Billing form Selectors
         firstNameSelector="#billing\\:firstname";
         lastNameSelector="#billing\\:lastname";
         emailSelector="#billing\\:email";
@@ -30,10 +45,22 @@ public class CheckoutPage {
         citySelector="#billing\\:city";
         phoneSelector="#billing\\:telephone";
         regionSelector="#billing\\:region_id";
-        continueButton="div.fieldset button";
+        continueBillingButton="div.fieldset button";
         checkoutOnePageCheckoutContinueButton = "#onepage-guest-register-button";
         checkoutShipDifferentAddressButton = "label[for='billing\\:use_for_shipping_no']";
+
+        // Shipping form selectors
+        firstNameShippingSelector="#shipping\\:firstname";
+        lastNameShippingSelector="#shipping\\:lastname";
+        emailShippingSelector="#shipping\\:email";
+        phoneShippingSelector="#shipping\\:telephone";
+        cityShippingSelector="#shipping\\:city";
+        zipShippingSelector="#shipping\\:postcode";
+        addressShippingSelector="#shipping\\:street1";
+        regionShippingSelector="#shipping\\:region_id";
     }
+
+    // Billing form methods
 
     public void fillFirstName(String firstName) {
         page.locator(firstNameSelector).fill(firstName);
@@ -71,7 +98,7 @@ public class CheckoutPage {
         page.locator(regionSelector).selectOption("Alaska");
     }
 
-    public void fillCheckoutForm(DeliveryAddress testAddress) {
+    public void fillCheckoutFormBilling(DeliveryAddress testAddress) {
         fillFirstName(testAddress.getFirstName());
         fillLastName(testAddress.getFirstName());
         fillEmail(testAddress.getEmail());
@@ -81,8 +108,56 @@ public class CheckoutPage {
         fillZip(testAddress.getZip());
     }
 
+    public void fillFirstNameShipping(String firstName) {
+        page.locator(firstNameShippingSelector).fill(firstName);
+    }
+
+    public void fillEmailShipping(String email) {
+        page.locator(emailShippingSelector).fill(email);
+    }
+
+    public void fillAddressShipping(String address) {
+        page.locator(addressShippingSelector).fill(address);
+    }
+
+    public void fillCityShipping(String city) {
+        page.locator(cityShippingSelector).fill(city);
+    }
+
+    public void fillZipShipping(String zip) {
+        page.locator(zipShippingSelector).fill(zip);
+    }
+
+    public void fillPhoneShipping(String phone){
+        page.locator(phoneShippingSelector).fill(phone);
+    }
+
+    public void fillLastNameShipping(String lastname) {
+        page.locator(lastNameShippingSelector).fill(lastname);
+    }
+
+    public void fillRegionShipping(String region) {
+        page.locator(regionShippingSelector).selectOption(region);
+    }
+
+    public void fillRegionShipping() {
+        page.locator(regionShippingSelector).selectOption("Alaska");
+    }
+
+    public void fillCheckoutFormShipping(DeliveryAddress testAddress) {
+        fillFirstNameShipping(testAddress.getFirstName());
+        fillLastNameShipping(testAddress.getFirstName());
+        fillEmailShipping(testAddress.getEmail());
+        fillAddressShipping(testAddress.getAddress());
+        fillCityShipping(testAddress.getCity());
+        fillPhoneShipping(testAddress.getPhone());
+        fillZipShipping(testAddress.getZip());
+    }
+
+    // Shipping form methods
+
     public void continueCheckout() {
-        page.locator(continueButton).click();
+        page.locator(continueBillingButton).click();
     }
 
     public void checkoutClickOnePageContinueButton() {
@@ -158,6 +233,6 @@ public class CheckoutPage {
     }
 
     public String getContinueButton() {
-        return continueButton;
+        return continueBillingButton;
     }
 }
