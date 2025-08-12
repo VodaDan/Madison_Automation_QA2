@@ -21,20 +21,20 @@ public class CheckoutTest extends BaseTest {
         checkoutPage = new CheckoutPage(page);
     }
 
-//    @Disabled("Test fails - does not follow the shipping page after.")
-//    @Test
-//    public void checkoutBillingAddressOrder() {
-//        DeliveryAddress address = new DeliveryAddress();
-//        ProductPage productPage = new ProductPage(page);
-//        ShoppingCart shoppingCartPage = new ShoppingCart(page);
-//        navigation.navigateToHomepage();
-//        productPage.addRandomProductToCart("2");
-//        shoppingCartPage.clickProceedToCheckout();
-//        checkoutPage.checkoutClickOnePageContinueButton();
-//        checkoutPage.fillCheckoutForm(address);
-//        checkoutPage.fillRegion(); // default is "Alaska"
-//        checkoutPage.continueCheckout();
-//        assertThat(page.locator("li#opc-shipping")).containsClass("active");
-//    }
+    @Disabled("Test fails - does not follow the shipping page after.")
+    @Test
+    public void checkoutBillingAddressOrder() {
+        DeliveryAddress address = new DeliveryAddress();
+        ProductPage productPage = new ProductPage(page);
+        ShoppingCart shoppingCartPage = new ShoppingCart(page);
+        navigation.navigateToHomepage();
+        productPage.addRandomProductToCart("2");
+        shoppingCartPage.clickProceedToCheckout();
+        checkoutPage.checkoutClickOnePageContinueButton();
+        checkoutPage.fillCheckoutForm(address);
+        checkoutPage.fillRegion(); // default is "Alaska"
+        checkoutPage.continueCheckout();
+        assertThat(page.locator("li#opc-shipping")).containsClass("active");
+    }
 
 }
