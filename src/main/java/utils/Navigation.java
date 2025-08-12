@@ -38,4 +38,12 @@ public class Navigation {
 
     public void navigateToShoppingCart(){page.navigate("http://qa2magento.dev.evozon.com/checkout/cart/");}
 
+
+    public void navigateToWomenTopsAndBlouses(){
+        page.navigate("http://qa2magento.dev.evozon.com/women/tops-blouses.html");
+    }
+
+    public void navigateToPlaidCottonShirt(){
+        page.navigate("http://qa3magento.dev.evozon.com/men/shirts/plaid-cotton-shirt-479.html");
+    }
 }

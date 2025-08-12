@@ -3,7 +3,7 @@ package pages;
 import com.microsoft.playwright.Page;
 
 public class Homepage {
-    public Page page;
+    private Page page;
 
     public Homepage(Page page) {
         this.page = page;
