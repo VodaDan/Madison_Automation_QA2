@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import pages.HeaderPage;
 import pages.Homepage;
 import pages.ProductPage;
+import pages.ShoppingCartPage;
 import utils.Navigation;
 
 

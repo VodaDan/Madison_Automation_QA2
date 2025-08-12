@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pages.CheckoutPage;
 import pages.ProductPage;
-import pages.ShoppingCart;
+import pages.ShoppingCartPage;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
@@ -26,7 +26,7 @@ public class CheckoutTest extends BaseTest {
     public void checkoutBillingAddressOrder() {
         DeliveryAddress address = new DeliveryAddress();
         ProductPage productPage = new ProductPage(page);
-        ShoppingCart shoppingCartPage = new ShoppingCart(page);
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(page);
         navigation.navigateToHomepage();
         productPage.addRandomProductToCart("2");
         shoppingCartPage.checkoutBottomButton();
@@ -41,7 +41,7 @@ public class CheckoutTest extends BaseTest {
     public void checkoutDifferentShippingAndBillingAddressTest() {
         DeliveryAddress address = new DeliveryAddress();
         ProductPage productPage = new ProductPage(page);
-        ShoppingCart shoppingCartPage = new ShoppingCart(page);
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(page);
         navigation.navigateToHomepage();
         productPage.addRandomProductToCart("2");
         shoppingCartPage.checkoutTopButton();
