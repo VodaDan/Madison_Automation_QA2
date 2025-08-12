@@ -1,19 +1,34 @@
 package pages;
 
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.AriaRole;
 
 public class ShoppingCart {
     private Page page;
     private String quantitySelector;
     private String removeItemButtonSelector;
+<<<<<<< HEAD
     private String proceedToCheckoutButton;
     private String productsList;
     private String productTitle;
     private String productPrice;
     private String productQuantity;
+=======
+    private String checkoutBottomButtonSelector;
+    private String checkoutTopButtonSelector;
+    private String nameCheckout;
+    private String emptyCartButtonSelector;
+
+>>>>>>> 61a49a8a5d56775f65d8952915f16e29a6463805
 
     public ShoppingCart(Page pageSent){
         page = pageSent;
+        quantitySelector               = "#qty";
+        removeItemButtonSelector       = "tr.first td.a-center a.btn-remove";
+        checkoutBottomButtonSelector   ="ul.checkout-types.bottom button[title='Proceed to Checkout']";
+        checkoutTopButtonSelector      ="ul.checkout-types.top";
+        nameCheckout                   ="Proceed to Checkout";
+        emptyCartButtonSelector        ="##empty_cart_button";
         quantitySelector         = "#qty";
         removeItemButtonSelector = "tr.first td.a-center a.btn-remove";
         proceedToCheckoutButton = "li.method-checkout-cart-methods-onepage-bottom button";
@@ -30,9 +45,10 @@ public class ShoppingCart {
     public void removeItemFromCart() {
         page.locator(removeItemButtonSelector).click();
     }
-
-    public void clickProceedToCheckout() {
-        page.locator(proceedToCheckoutButton).click();
+    public void checkoutBottomButton(){
+        page.locator(checkoutBottomButtonSelector)
+                .getByRole(AriaRole.BUTTON, new Locator.GetByRoleOptions()
+                        .setName(nameCheckout)).click();
     }
 
     public String getProductTitle(){
@@ -50,6 +66,15 @@ public class ShoppingCart {
     }
     public String getLastProductSize() {
         return page.locator("dl.item-options dt:has-text('Size') + dd").last().count() == 0 ? null : page.locator("dl.item-options dt:has-text('Color') + dd").last().innerText();
+    }
+    public void checkoutTopButton(){
+        page.locator(checkoutTopButtonSelector)
+                .getByRole(AriaRole.BUTTON, new Locator.GetByRoleOptions()
+                        .setName(nameCheckout)).click();
+    }
+
+    public void emptyCart(){
+        page.locator(emptyCartButtonSelector).click();
     }
 }
 
