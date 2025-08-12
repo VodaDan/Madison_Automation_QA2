@@ -144,7 +144,7 @@ public class ProductPage {
     }
 
     public String getProductTitle(){
-        return title = title.toUpperCase();
+        return title;
     }
 
     public  String getSelectedColor(){

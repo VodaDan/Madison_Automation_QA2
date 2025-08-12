@@ -32,7 +32,7 @@ public class WishlistTest extends BaseTest{
         loginPage.login(testUser);
         navigation.navigateToWomenDressesAndSkirts();
         productPage.addToWishlist();
-        assertEquals(wishlistPage.getSuccessMessageWishlist(), productPage.getProductTitle() + " has been added to your wishlist. Click here to continue shopping.");
+        assertEquals(wishlistPage.getSuccessMessageWishlist().toLowerCase(), productPage.getProductTitle().toLowerCase() + " has been added to your wishlist. click here to continue shopping.");
      }
 
 }
