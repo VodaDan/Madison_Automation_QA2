@@ -35,4 +35,8 @@ public class Navigation {
     public void navigateToLoginPage(){
         page.navigate("http://qa2magento.dev.evozon.com/customer/account/login/");
     }
+
+    public void navigateToWomenTopsAndBlouses(){
+        page.navigate("http://qa2magento.dev.evozon.com/women/tops-blouses.html");
+    }
 }
