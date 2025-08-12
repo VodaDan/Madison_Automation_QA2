@@ -1,16 +1,25 @@
 package pages;
 
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.AriaRole;
 
 public class ShoppingCart {
     private Page page;
     private String quantitySelector;
     private String removeItemButtonSelector;
+    private String checkoutBottomButtonSelector;
+    private String checkoutTopButtonSelector;
+    private String nameCheckout;
+    private String emptyCartButtonSelector;
 
     public ShoppingCart(Page pageSent){
         page = pageSent;
-        quantitySelector         = "#qty";
-        removeItemButtonSelector = "tr.first td.a-center a.btn-remove";
+        quantitySelector               = "#qty";
+        removeItemButtonSelector       = "tr.first td.a-center a.btn-remove";
+        checkoutBottomButtonSelector   ="ul.checkout-types.bottom button[title='Proceed to Checkout']";
+        checkoutTopButtonSelector      ="ul.checkout-types.top";
+        nameCheckout                   ="Proceed to Checkout";
+        emptyCartButtonSelector        ="##empty_cart_button";
     }
 
     public void setQuantity(String quantity) {
