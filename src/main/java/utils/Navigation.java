@@ -31,4 +31,8 @@ public class Navigation {
     public void navigateToJewelry(){
         page.navigate("http://qa2magento.dev.evozon.com/accessories/jewelry.html");
     }
+
+    public void navigateToLoginPage(){
+        page.navigate("http://qa2magento.dev.evozon.com/customer/account/login/");
+    }
 }

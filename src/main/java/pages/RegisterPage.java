@@ -14,6 +14,7 @@ public class RegisterPage {
     private String registerButtonSelector;
     private String confirmationPasswordSelector;
     private String middleNameSelector;
+    private String passwordValidationSelector;
 
     public RegisterPage(Page pageSent) {
         page = pageSent;
@@ -24,6 +25,7 @@ public class RegisterPage {
         confirmationPasswordSelector = "#confirmation";
         registerButtonSelector = "#";
         middleNameSelector ="#middlename";
+        passwordValidationSelector = "div#advice-validate-password-password";
     }
 
     public void fillFirstName(String firstName) {
@@ -112,4 +114,11 @@ public class RegisterPage {
         this.middleNameSelector = middleNameSelector;
     }
 
+    public String getPasswordValidationSelector() {
+        return passwordValidationSelector;
+    }
+
+    public void setPasswordValidationSelector(String passwordValidationSelector) {
+        this.passwordValidationSelector = passwordValidationSelector;
+    }
 }

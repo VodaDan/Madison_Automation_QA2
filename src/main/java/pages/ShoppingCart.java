@@ -1,7 +1,6 @@
 package pages;
 
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.AriaRole;
 
 public class ShoppingCart {
     private Page page;
@@ -11,6 +10,7 @@ public class ShoppingCart {
     private String checkoutTopButtonSelector;
     private String nameCheckout;
     private String emptyCartButtonSelector;
+    private String proceedToCheckoutButton;
 
     public ShoppingCart(Page pageSent){
         page = pageSent;
@@ -20,6 +20,9 @@ public class ShoppingCart {
         checkoutTopButtonSelector      ="ul.checkout-types.top";
         nameCheckout                   ="Proceed to Checkout";
         emptyCartButtonSelector        ="##empty_cart_button";
+        quantitySelector         = "#qty";
+        removeItemButtonSelector = "tr.first td.a-center a.btn-remove";
+        proceedToCheckoutButton = "li.method-checkout-cart-methods-onepage-bottom button";
     }
 
     public void setQuantity(String quantity) {
@@ -42,6 +45,10 @@ public class ShoppingCart {
 
     public void emptyCart(){
         page.locator(emptyCartButtonSelector).click();
+    }
+
+    public void clickProceedToCheckout() {
+        page.locator(proceedToCheckoutButton).click();
     }
 }
 
