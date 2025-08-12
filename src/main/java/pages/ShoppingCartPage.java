@@ -34,7 +34,7 @@ public class ShoppingCartPage {
     public ShoppingCartPage(Page pageSent) {
         this.page = pageSent;
 
-        quantitySelector             = "td.product-cart-actions input";
+        quantitySelector             = ".input-text.qty";
         updateQuantityButton         = "button:nth-child(2).btn-update";
         editButton                   = "ul:nth-child(3).cart-links a";
         removeItemButtonSelector     = "tr.first td.a-center a.btn-remove";
@@ -63,21 +63,18 @@ public class ShoppingCartPage {
     public void setUpdateQuantityButton() { page.locator(updateQuantityButton).click(); }
     public void editButton() { page.locator(editButton).click(); }
     public void removeItemFromCart() { page.locator(removeItemButtonSelector).click(); }
-
     public void checkoutBottomButton() {
         page.locator(checkoutBottomButtonSelector)
                 .getByRole(AriaRole.BUTTON, new Locator.GetByRoleOptions()
                         .setName(nameCheckout))
                 .click();
     }
-
     public void checkoutTopButton() {
         page.locator(checkoutTopButtonSelector)
                 .getByRole(AriaRole.BUTTON, new Locator.GetByRoleOptions()
                         .setName(nameCheckout))
                 .click();
     }
-
     public void emptyCart() { page.locator(emptyCartButtonSelector).click(); }
     public void updateCartButton() { page.locator(updateCartButtonSelector).click(); }
     public void continueShoppingButton() { page.locator(continueShoppingButton).click(); }
