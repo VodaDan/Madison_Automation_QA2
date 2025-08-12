@@ -48,5 +48,4 @@ public class CartTest extends BaseTest{
             assertNull(shoppingCart.getLastProductSize());
         }
     }
-
 }

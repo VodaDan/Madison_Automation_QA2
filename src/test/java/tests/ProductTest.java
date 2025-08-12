@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.util.regex.Pattern;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ProductTest extends BaseTest{
     private ProductPage productPage;
@@ -32,5 +33,13 @@ public class ProductTest extends BaseTest{
         navigation.navigateToWomenDressesAndSkirts();
         productPage.addToWishlist();
         assertThat(page).hasURL(Pattern.compile("wishlist"));
+    }
+
+    @Test
+    public void testAddProductWithoutSelectedFields(){
+        navigation.navigateToPlaidCottonShirt();
+        productPage.setAddToCartButton();
+        System.out.println(productPage.getRequiredFields().count());
+        assertTrue(productPage.getRequiredFields().count() > 0);
     }
 }
