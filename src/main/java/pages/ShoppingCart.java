@@ -29,5 +29,19 @@ public class ShoppingCart {
     public void removeItemFromCart() {
         page.locator(removeItemButtonSelector).click();
     }
+    public void checkoutBottomButton(){
+        page.locator(checkoutBottomButtonSelector)
+                .getByRole(AriaRole.BUTTON, new Locator.GetByRoleOptions()
+                        .setName(nameCheckout)).click();
+    }
+    public void checkoutTopButton(){
+        page.locator(checkoutTopButtonSelector)
+                .getByRole(AriaRole.BUTTON, new Locator.GetByRoleOptions()
+                        .setName(nameCheckout)).click();
+    }
+
+    public void emptyCart(){
+        page.locator(emptyCartButtonSelector).click();
+    }
 }
 
