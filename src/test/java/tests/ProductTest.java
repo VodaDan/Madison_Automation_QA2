@@ -1,18 +1,18 @@
 package tests;
 
+import models.Product;
 import models.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.HeaderPage;
 import pages.LoginPage;
 import pages.ProductPage;
 
+import javax.swing.*;
 import java.util.regex.Pattern;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class ProductPageTest extends BaseTest{
-    private HeaderPage headerPage;
+public class ProductTest extends BaseTest{
     private ProductPage productPage;
     private LoginPage loginPage;
 
@@ -20,26 +20,8 @@ public class ProductPageTest extends BaseTest{
     @BeforeEach
     public void startSession(){
         super.startSession();
-        headerPage = new HeaderPage(page);
         productPage = new ProductPage(page);
         loginPage = new LoginPage(page);
-    }
-
-    @Test
-    public void addRandomProductToCart(){
-        navigation.navigateToWomenDressesAndSkirts();
-        productPage.clickRandomProductFromList();
-        productPage.selectColorAvailable();
-        productPage.selectSizeRandom();
-        productPage.setAddToCartButton();
-        assertThat(page).hasURL(Pattern.compile("cart"));
-    }
-
-    @Test
-    public void addRandomProductToCart2(){
-        navigation.navigateToWomenDressesAndSkirts();
-        productPage.addRandomProductToCart();
-        assertThat(page).hasURL(Pattern.compile("cart"));
     }
 
     @Test

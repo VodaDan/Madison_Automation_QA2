@@ -5,7 +5,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 
 public class HeaderPage {
-    Page page;
+    private Page page;
     private final Locator accountIcon;
     private final Locator searchField;
     private  final Locator searchButton;

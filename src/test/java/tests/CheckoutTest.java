@@ -28,7 +28,7 @@ public class CheckoutTest extends BaseTest {
         ProductPage productPage = new ProductPage(page);
         ShoppingCart shoppingCartPage = new ShoppingCart(page);
         navigation.navigateToHomepage();
-        productPage.addRandomProductToCart();
+        productPage.addRandomProductToCart("2");
         shoppingCartPage.clickProceedToCheckout();
         checkoutPage.checkoutClickOnePageContinueButton();
         checkoutPage.fillCheckoutForm(address);
