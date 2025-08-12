@@ -130,7 +130,7 @@ public class ProductPage {
     }
 
     public String getProductTitle(){
-        return title;
+        return title = title.toUpperCase();
     }
 
     public  String getSelectedColor(){
