@@ -21,7 +21,7 @@ class ShoppingCartTest extends BaseTest {
     @Test
     void testSetQuantityAndUpdate() {
         navigation.navigateToManShirts();
-        productPage.addRandomProductToCart();//adding a product to be able to set the quantity to 2
+        productPage.addRandomProductToCart("2");//adding a product to be able to set the quantity to 2
 
         shoppingCartPage.setQuantity("2");
         shoppingCartPage.setUpdateQuantityButton();
@@ -33,7 +33,7 @@ class ShoppingCartTest extends BaseTest {
     @Test
     void testEmptyCartFunctionality() {
         navigation.navigateToWomenDressesAndSkirts();
-        productPage.addRandomProductToCart();
+        productPage.addRandomProductToCart("2");
         assertTrue(page.locator(shoppingCartPage.getQuantitySelector()).isVisible(),
                 "Cart should have at least one item before emptying");
 

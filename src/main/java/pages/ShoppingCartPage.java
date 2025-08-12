@@ -25,6 +25,11 @@ public class ShoppingCartPage {
     private String zipSelector;
     private String freeShippingButtonSelector;
     private String flatRateButtonSelector;
+    private String productsList;
+    private String productTitle;
+    private String productPrice;
+    private String productQuantity;
+
 
     public ShoppingCartPage(Page pageSent) {
         this.page = pageSent;
@@ -47,6 +52,10 @@ public class ShoppingCartPage {
         zipSelector                  = "#postcode";
         freeShippingButtonSelector   = "#s_method_freeshipping_freeshipping";
         flatRateButtonSelector       = "#s_method_flatrate_flatrate";
+        productsList                 = "#shopping-cart-table";
+        productTitle                 = ".product-cart-info .product-name";
+        productPrice                 = ".product-cart-price .cart-price";
+        productQuantity              = ".input-text.qty";
     }
 
     // ===== Actions =====
@@ -101,4 +110,20 @@ public class ShoppingCartPage {
     public String getZipSelector()                  { return zipSelector; }
     public String getFreeShippingButtonSelector()   { return freeShippingButtonSelector; }
     public String getFlatRateButtonSelector()       { return flatRateButtonSelector; }
+    public String getProductTitle(){
+        return page.locator(productTitle).last().innerText();
+    }
+    public String getPrice(){
+        return page.locator(productPrice).last().innerText();
+    }
+    public String getQuantity(){
+        return page.locator(productQuantity).last().inputValue();
+    }
+    public String getLastProductColor() {
+        return page.locator("dl.item-options dt:has-text('Color') + dd").last().count() == 0 ? null : page.locator("dl.item-options dt:has-text('Color') + dd").last().innerText();
+    }
+    public String getLastProductSize() {
+        return page.locator("dl.item-options dt:has-text('Size') + dd").last().count() == 0 ? null : page.locator("dl.item-options dt:has-text('Color') + dd").last().innerText();
+    }
+
 }

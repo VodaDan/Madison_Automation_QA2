@@ -1,11 +1,9 @@
 package tests;
 
-import models.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.LoginPage;
 import pages.ProductPage;
-import pages.ShoppingCart;
+import pages.ShoppingCartPage;
 
 import java.util.regex.Pattern;
 
@@ -14,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CartTest extends BaseTest{
     private ProductPage productPage;
-    private ShoppingCart shoppingCart;
+    private ShoppingCartPage shoppingCart;
 
     @Override
     @BeforeEach
     public void startSession(){
         super.startSession();
         productPage = new ProductPage(page);
-        shoppingCart = new ShoppingCart(page);
+        shoppingCart = new ShoppingCartPage(page);
     }
 
     @Test

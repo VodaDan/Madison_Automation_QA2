@@ -41,7 +41,7 @@ public class CheckoutTest extends BaseTest {
     public void checkoutDifferentShippingAndBillingAddressTest() {
         DeliveryAddress address = new DeliveryAddress();
         ProductPage productPage = new ProductPage(page);
-        ShoppingCart shoppingCartPage = new ShoppingCart(page);
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(page);
         navigation.navigateToHomepage();
         productPage.addRandomProductToCart("2");
         shoppingCartPage.checkoutTopButton();
