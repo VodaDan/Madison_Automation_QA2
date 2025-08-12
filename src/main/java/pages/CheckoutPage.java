@@ -28,9 +28,19 @@ public class CheckoutPage {
     private String addressShippingSelector;
     private String regionShippingSelector;
 
+    // Buttons
     private String continueBillingButton;
     private String checkoutOnePageCheckoutContinueButton;
     private String checkoutShipDifferentAddressButton;
+    private String continueShippingButton;
+    private String continuePayment;
+    private String continueShippingPrice;
+    private String placeOrderButton;
+
+    // Others
+    private String freeShipping;
+    private String flatRate;
+
 
 
     public CheckoutPage(Page pageSent) {
@@ -45,19 +55,28 @@ public class CheckoutPage {
         citySelector="#billing\\:city";
         phoneSelector="#billing\\:telephone";
         regionSelector="#billing\\:region_id";
+
+        // Buttons
         continueBillingButton="div.fieldset button";
+        continueShippingButton = "div#shipping-buttons-container>button";
         checkoutOnePageCheckoutContinueButton = "#onepage-guest-register-button";
         checkoutShipDifferentAddressButton = "label[for='billing\\:use_for_shipping_no']";
+        continuePayment = "div#payment-buttons-container > button";
+        continueShippingPrice = "div#shipping-method-buttons-container button";
+        placeOrderButton = "div#review-buttons-container button";
 
         // Shipping form selectors
         firstNameShippingSelector="#shipping\\:firstname";
         lastNameShippingSelector="#shipping\\:lastname";
-        emailShippingSelector="#shipping\\:email";
         phoneShippingSelector="#shipping\\:telephone";
         cityShippingSelector="#shipping\\:city";
         zipShippingSelector="#shipping\\:postcode";
         addressShippingSelector="#shipping\\:street1";
-        regionShippingSelector="#shipping\\:region_id";
+        regionShippingSelector="select#shipping\\:region_id";
+
+        // Others
+        freeShipping = "input#s_method_freeshipping_freeshipping";
+        flatRate = "input#s_method_freeshipping_freeshipping";
     }
 
     // Billing form methods
@@ -108,12 +127,10 @@ public class CheckoutPage {
         fillZip(testAddress.getZip());
     }
 
+    // Shipping form methods
+
     public void fillFirstNameShipping(String firstName) {
         page.locator(firstNameShippingSelector).fill(firstName);
-    }
-
-    public void fillEmailShipping(String email) {
-        page.locator(emailShippingSelector).fill(email);
     }
 
     public void fillAddressShipping(String address) {
@@ -147,16 +164,40 @@ public class CheckoutPage {
     public void fillCheckoutFormShipping(DeliveryAddress testAddress) {
         fillFirstNameShipping(testAddress.getFirstName());
         fillLastNameShipping(testAddress.getFirstName());
-        fillEmailShipping(testAddress.getEmail());
         fillAddressShipping(testAddress.getAddress());
         fillCityShipping(testAddress.getCity());
         fillPhoneShipping(testAddress.getPhone());
         fillZipShipping(testAddress.getZip());
+        fillRegionShipping();
     }
 
-    // Shipping form methods
+    public void clickContinueShipping() {
+        page.locator(continueShippingButton).click();
+    }
 
-    public void continueCheckout() {
+    public void selectRate(String rate) {
+        if(rate.contains("free")) {
+            page.locator(freeShipping).click();
+        } else if(rate.contains("flat")||rate.contains("fixed")) {
+            page.locator(flatRate).click();
+        }
+    }
+
+    public void clickContinuePayment() {
+        page.locator(continuePayment).click();
+    }
+
+    public void clickContinueShippingPrice() {
+        page.locator(continueShippingPrice).click();
+    }
+
+    public void clickPlaceOrder() {
+        page.locator(placeOrderButton).click();
+    }
+
+    // ----------------------------------------------------------------------------
+
+    public void clickContinueBilling() {
         page.locator(continueBillingButton).click();
     }
 

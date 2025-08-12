@@ -33,7 +33,7 @@ public class CheckoutTest extends BaseTest {
         checkoutPage.checkoutClickOnePageContinueButton();
         checkoutPage.fillCheckoutFormBilling(address);
         checkoutPage.fillRegion(); // default is "Alaska"
-        checkoutPage.continueCheckout();
+        checkoutPage.clickContinueBilling();
         assertThat(page.locator("li#opc-shipping")).containsClass("active");
     }
 
@@ -46,11 +46,33 @@ public class CheckoutTest extends BaseTest {
         productPage.addRandomProductToCart("2");
         shoppingCartPage.checkoutTopButton();
         checkoutPage.checkoutClickOnePageContinueButton();
+
+        // Billing form
         checkoutPage.fillCheckoutFormBilling(address);
         page.locator("label[for='billing:use_for_shipping_no']").click();
         checkoutPage.fillRegion(); // default is "Alaska"
-        checkoutPage.continueCheckout();
+        checkoutPage.clickContinueBilling();
+
+        // Shipping form
         assertThat(page.locator("li#opc-shipping")).containsClass("active");
+        checkoutPage.fillCheckoutFormShipping(address);
+        checkoutPage.clickContinueShipping();
+        page.setDefaultTimeout(60000);
+
+        // Select Shipping method
+        checkoutPage.selectRate("free");
+        checkoutPage.clickContinueShippingPrice();
+
+        // Select Payment
+        checkoutPage.clickContinuePayment();
+
+        // Place Order
+        checkoutPage.clickPlaceOrder();
+
+        assertThat(page).hasTitle("Magento Commerce");
+        assertThat(page.locator("div.page-title h1")).hasText("Your order has been received.");
+
+
     }
 
 
