@@ -7,19 +7,16 @@ public class ShoppingCart {
     private Page page;
     private String quantitySelector;
     private String removeItemButtonSelector;
-<<<<<<< HEAD
     private String proceedToCheckoutButton;
     private String productsList;
     private String productTitle;
     private String productPrice;
     private String productQuantity;
-=======
     private String checkoutBottomButtonSelector;
     private String checkoutTopButtonSelector;
     private String nameCheckout;
     private String emptyCartButtonSelector;
 
->>>>>>> 61a49a8a5d56775f65d8952915f16e29a6463805
 
     public ShoppingCart(Page pageSent){
         page = pageSent;
