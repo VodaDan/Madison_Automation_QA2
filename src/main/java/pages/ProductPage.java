@@ -26,6 +26,7 @@ public class ProductPage {
     private Locator priceLocator;
     private String price = null;
     private final Locator quantityField;
+    private final Locator requiredField;
 
     public ProductPage(Page page) {
         this.page = page;
@@ -38,6 +39,7 @@ public class ProductPage {
         this.productTitleLocator = page.locator(".product-shop .product-name");
         this.priceLocator = page.locator(".price-info .price-box .regular-price .price");
         this.quantityField = page.locator("#qty");
+        this.requiredField = page.locator("[id ^='advice-required-entry']");
     }
 
     public Locator getSuccessMessage() {
@@ -123,6 +125,18 @@ public class ProductPage {
         setAddToCartButton();
     }
 
+    public void addSelectedProduct(String quantity){
+        selectedColor = null;
+        selectedSize = null;
+
+        if (colorsList.count() > 0)
+            selectColorAvailable();
+        if (sizesList.count()  > 0)
+            selectSizeRandom();
+
+        setQuantityField(quantity);
+        setAddToCartButton();
+    }
 
     public void addToWishlist(){
         clickRandomProductFromList();
@@ -143,5 +157,8 @@ public class ProductPage {
 
     public String getProductPrice(){
         return price;
+    }
+    public Locator getRequiredFields(){
+        return requiredField;
     }
 }
