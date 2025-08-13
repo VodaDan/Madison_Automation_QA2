@@ -23,7 +23,7 @@ public class CheckoutTest extends BaseTest {
 
     @Disabled("Test fails - does not follow the shipping page after.")
     @Test
-    public void checkoutBillingAddressOrder() {
+    public void checkoutSameAddressTest() {
         DeliveryAddress address = new DeliveryAddress();
         ProductPage productPage = new ProductPage(page);
         ShoppingCartPage shoppingCartPage = new ShoppingCartPage(page);
@@ -78,8 +78,23 @@ public class CheckoutTest extends BaseTest {
 
         assertThat(page).hasTitle("Magento Commerce");
         assertThat(page.locator("div.page-title h1")).hasText("Your order has been received.");
+    }
 
+    @Test
+    public void checkoutLoginValidUser() {
+        ProductPage productPage = new ProductPage(page);
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(page);
+        navigation.navigateToHomepage();
+        page.navigate("http://qa2magento.dev.evozon.com/men/new-arrivals/chelsea-tee.html");
+        productPage.addSelectedProduct("2");
+        shoppingCartPage.checkoutTopButton();
 
+        // Fill login data
+        checkoutPage.fillCheckoutLoginForm(globalUser);
+
+        assertThat(page.locator("div.page-title h1")).hasText("Checkout");
+        assertThat(page.locator("p.welcome-msg")).containsText(globalUser.getFirstName());
+        assertThat(page.locator("p.welcome-msg")).containsText(globalUser.getLastName());
     }
 
 
