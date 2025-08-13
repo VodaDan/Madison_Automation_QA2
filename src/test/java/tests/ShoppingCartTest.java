@@ -1,5 +1,8 @@
 package tests;
 
+import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.WaitForSelectorState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.ProductPage;
@@ -145,12 +148,18 @@ class ShoppingCartTest extends BaseTest {
         shoppingCartPage.fillState_DropDown("California");
         shoppingCartPage.fillCity("Los Angeles");
         shoppingCartPage.fillZip("90001");
-        shoppingCartPage.estimateButtonSelector();
+
+        page.locator("div.buttons-set button.button2")
+               .click(new Locator.ClickOptions().setNoWaitAfter(true));
+        page.waitForSelector("#s_method_flatrate_flatrate",
+                new Page.WaitForSelectorOptions()
+                        .setState(WaitForSelectorState.VISIBLE)
+                        .setTimeout(60000));
 
         shoppingCartPage.flatRateButtonSelector();
 
         assertTrue(page.locator("#s_method_flatrate_flatrate").isChecked(),
-                "Free shipping option should be selected");
+                "Flat rate shipping option should be selected");
     }
 
 }
