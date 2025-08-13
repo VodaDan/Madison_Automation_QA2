@@ -28,13 +28,12 @@ public class ShoppingCartPage {
     private String productsList;
     private String productTitle;
     private String productPrice;
-    private String productQuantity;
 
 
     public ShoppingCartPage(Page pageSent) {
         this.page = pageSent;
 
-        quantitySelector             = ".input-text.qty";
+        quantitySelector             = "td.product-cart-actions input";
         updateQuantityButton         = "button:nth-child(2).btn-update";
         editButton                   = "ul:nth-child(3).cart-links a";
         removeItemButtonSelector     = "tr.first td.a-center a.btn-remove";
@@ -55,7 +54,6 @@ public class ShoppingCartPage {
         productsList                 = "#shopping-cart-table";
         productTitle                 = ".product-cart-info .product-name";
         productPrice                 = ".product-cart-price .cart-price";
-        productQuantity              = ".input-text.qty";
     }
 
     // ===== Actions =====
@@ -114,7 +112,7 @@ public class ShoppingCartPage {
         return page.locator(productPrice).last().innerText();
     }
     public String getQuantity(){
-        return page.locator(productQuantity).last().inputValue();
+        return page.locator(quantitySelector).last().inputValue();
     }
     public String getLastProductColor() {
         return page.locator("dl.item-options dt:has-text('Color') + dd").last().count() == 0 ? null : page.locator("dl.item-options dt:has-text('Color') + dd").last().innerText();
