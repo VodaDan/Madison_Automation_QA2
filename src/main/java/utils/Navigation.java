@@ -46,4 +46,8 @@ public class Navigation {
     public void navigateToPlaidCottonShirt(){
         page.navigate("http://qa3magento.dev.evozon.com/men/shirts/plaid-cotton-shirt-479.html");
     }
+
+    public void navigateToRacerBackMaxiDress(){
+        page.navigate("http://qa2magento.dev.evozon.com/women/dresses-skirts/racer-back-maxi-dress-492.html");
+    }
 }

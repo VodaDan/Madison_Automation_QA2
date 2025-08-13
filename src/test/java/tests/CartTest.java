@@ -24,7 +24,7 @@ public class CartTest extends BaseTest{
 
     @Test
     public void addRandomProductToCart() {
-        navigation.navigateToJewelry();
+        navigation.navigateToManShirts();
         String quantity = "1";
         productPage.addRandomProductToCart(quantity);
 
