@@ -27,6 +27,7 @@ public class ProductPage {
     private String price = null;
     private final Locator quantityField;
     private final Locator requiredField;
+    private final Locator specialPrice;
 
     public ProductPage(Page page) {
         this.page = page;
@@ -40,6 +41,7 @@ public class ProductPage {
         this.priceLocator = page.locator(".price-info .price-box .regular-price .price");
         this.quantityField = page.locator("#qty");
         this.requiredField = page.locator("[id ^='advice-required-entry']");
+        this.specialPrice = page.locator(".price-info .price-box .special-price");
     }
 
     public Locator getSuccessMessage() {
@@ -67,8 +69,13 @@ public class ProductPage {
         randomProduct.click();
 
         title = productTitleLocator.innerText();
-        price = priceLocator.innerText();
-        System.out.println(title);
+        if(priceLocator.isVisible()){
+            price = priceLocator.innerText();
+        } else if (specialPrice.isVisible()) {
+            price = specialPrice.innerText();
+        }else{
+            price = null;
+        }
     }
 
     public void selectColorAvailable(){
@@ -88,7 +95,6 @@ public class ProductPage {
             randomColor.click();
         }
         selectedColor = randomColor.locator("img").getAttribute("alt");
-        System.out.println(selectedColor);
     }
 
     public void selectSizeRandom(){
@@ -107,7 +113,6 @@ public class ProductPage {
             randomSize.click();
         }
         selectedSize = randomSize.innerText();
-        System.out.println(selectedSize);
     }
 
     public void addRandomProductToCart(String quantity){
@@ -134,6 +139,14 @@ public class ProductPage {
         if (sizesList.count()  > 0)
             selectSizeRandom();
 
+        title = productTitleLocator.innerText();
+        if(priceLocator.isVisible()){
+            price = priceLocator.innerText();
+        } else if (specialPrice.isVisible()) {
+            price = specialPrice.innerText();
+        }else{
+            price = null;
+        }
         setQuantityField(quantity);
         setAddToCartButton();
     }
