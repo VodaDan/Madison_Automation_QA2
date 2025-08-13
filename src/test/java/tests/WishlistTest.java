@@ -16,7 +16,7 @@ public class WishlistTest extends BaseTest{
     private WishlistPage wishlistPage;
     private LoginPage loginPage;
 
-     @Override
+    @Override
     @BeforeEach
     public void startSession(){
          super.startSession();
@@ -25,7 +25,7 @@ public class WishlistTest extends BaseTest{
          loginPage = new LoginPage(page);
      }
 
-     @Test
+    @Test
     public void addRandomProductToWishlist() throws InterruptedException {
         User testUser = new User("Jon","Jon","Jon@email.com","user1234");
         navigation.navigateToLoginPage();
@@ -34,5 +34,17 @@ public class WishlistTest extends BaseTest{
         productPage.addToWishlist();
         assertEquals(wishlistPage.getSuccessMessageWishlist().toLowerCase(), productPage.getProductTitle().toLowerCase() + " has been added to your wishlist. click here to continue shopping.");
      }
+
+    @Test
+    public void addProductToWishlistAndCheckPrice() throws InterruptedException {
+        User testUser = new User("Jon","Jon","Jon@email.com","user1234");
+        navigation.navigateToLoginPage();
+        loginPage.login(testUser);
+        navigation.navigateToWomenDressesAndSkirts();
+        productPage.addToWishlist();
+        assertEquals(wishlistPage.getWishlistPriceForSelectedProduct(productPage.getProductTitle()), productPage.getProductPrice());
+        Thread.sleep(5000);
+    }
+
 
 }
