@@ -62,11 +62,12 @@ public class CheckoutTest extends BaseTest {
 
         // Select Shipping method
         try {
+            page.setDefaultTimeout(7000);
             checkoutPage.selectRate("free");
         } catch (Exception e) {
             System.out.println("Is it gift?" + e.getMessage());
         }
-
+        page.setDefaultTimeout(60000);
         checkoutPage.clickContinueShippingPrice();
 
         // Select Payment
