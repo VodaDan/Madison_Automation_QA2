@@ -40,6 +40,9 @@ public class CheckoutPage {
     // Others
     private String freeShipping;
     private String flatRate;
+    private String checkoutLoginEmail;
+    private String checkoutLoginPassword;
+    private String checkoutLoginButton;
 
 
 
@@ -77,6 +80,10 @@ public class CheckoutPage {
         // Others
         freeShipping = "input#s_method_freeshipping_freeshipping";
         flatRate = "input#s_method_freeshipping_freeshipping";
+        checkoutLoginButton = "div.buttons-set button[type='submit']";
+        checkoutLoginEmail = "#login-email";
+        checkoutLoginPassword = "#login-password";
+
     }
 
     // Billing form methods
@@ -193,6 +200,24 @@ public class CheckoutPage {
 
     public void clickPlaceOrder() {
         page.locator(placeOrderButton).click();
+    }
+
+    public void fillCheckoutLoginEmail(String email) {
+        page.locator(checkoutLoginEmail).fill(email);
+    }
+
+    public void fillCheckoutLoginPassword(String password) {
+        page.locator(checkoutLoginPassword).fill(password);
+    }
+
+    public void checkoutClickLoginButton() {
+        page.locator(checkoutLoginButton).click();
+    }
+
+    public void fillCheckoutLoginForm(User user) {
+        fillCheckoutLoginEmail(user.getEmail());
+        fillCheckoutLoginPassword(user.getPassword());
+        checkoutClickLoginButton();
     }
 
     // ----------------------------------------------------------------------------

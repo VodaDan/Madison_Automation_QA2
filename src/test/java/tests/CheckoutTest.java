@@ -23,7 +23,7 @@ public class CheckoutTest extends BaseTest {
 
     @Disabled("Test fails - does not follow the shipping page after.")
     @Test
-    public void checkoutBillingAddressOrder() {
+    public void checkoutSameAddressTest() {
         DeliveryAddress address = new DeliveryAddress();
         ProductPage productPage = new ProductPage(page);
         ShoppingCartPage shoppingCartPage = new ShoppingCartPage(page);
@@ -43,7 +43,8 @@ public class CheckoutTest extends BaseTest {
         ProductPage productPage = new ProductPage(page);
         ShoppingCartPage shoppingCartPage = new ShoppingCartPage(page);
         navigation.navigateToHomepage();
-        productPage.addRandomProductToCart("2");
+        page.navigate("http://qa2magento.dev.evozon.com/men/new-arrivals/chelsea-tee.html");
+        productPage.addSelectedProduct("2");
         shoppingCartPage.checkoutTopButton();
         checkoutPage.checkoutClickOnePageContinueButton();
 
@@ -60,7 +61,13 @@ public class CheckoutTest extends BaseTest {
         page.setDefaultTimeout(60000);
 
         // Select Shipping method
-        checkoutPage.selectRate("free");
+        try {
+            page.setDefaultTimeout(7000);
+            checkoutPage.selectRate("free");
+        } catch (Exception e) {
+            System.out.println("Is it gift?" + e.getMessage());
+        }
+        page.setDefaultTimeout(60000);
         checkoutPage.clickContinueShippingPrice();
 
         // Select Payment
@@ -71,8 +78,23 @@ public class CheckoutTest extends BaseTest {
 
         assertThat(page).hasTitle("Magento Commerce");
         assertThat(page.locator("div.page-title h1")).hasText("Your order has been received.");
+    }
 
+    @Test
+    public void checkoutLoginValidUser() {
+        ProductPage productPage = new ProductPage(page);
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(page);
+        navigation.navigateToHomepage();
+        page.navigate("http://qa2magento.dev.evozon.com/men/new-arrivals/chelsea-tee.html");
+        productPage.addSelectedProduct("2");
+        shoppingCartPage.checkoutTopButton();
 
+        // Fill login data
+        checkoutPage.fillCheckoutLoginForm(globalUser);
+
+        assertThat(page.locator("div.page-title h1")).hasText("Checkout");
+        assertThat(page.locator("p.welcome-msg")).containsText(globalUser.getFirstName());
+        assertThat(page.locator("p.welcome-msg")).containsText(globalUser.getLastName());
     }
 
 
